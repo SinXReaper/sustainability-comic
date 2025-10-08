@@ -388,8 +388,17 @@
 
                 const handleFind = (item) => {
                     if (!found.includes(item.id)) {
-                        setFound([...found, item.id]);
+                        const newFound = [...found, item.id];
+                        setFound(newFound);
                         setCarbonSaved(carbonSaved + 10);
+                        
+                        // Auto-continue when all are found
+                        if (newFound.length === 3) {
+                            setTimeout(() => {
+                                alert(`Great job! You found all 3 energy wasters and saved 30 carbon points!`);
+                                setCurrentScene(6);
+                            }, 500);
+                        }
                     }
                 };
 
